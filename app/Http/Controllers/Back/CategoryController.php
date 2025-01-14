@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Category;  // Add this line to import the Category model
+use App\Http\Controllers\Controller;  // Add this line to import the Category model
 class CategoryController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class CategoryController extends Controller
     {
         // Bagian ini tetap seperti yang Anda isi
         return view('back.category.index', [
-            'categories' => Category::get()
+            'categories' => Category::latest()->get()
         ]);
     }
 
@@ -26,7 +27,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // Kosong
+        $data = $request->validate([
+            'name' => 'required|min:3'
+        ]);
+        $data['slug'] = Str::slug($data['name']);
+        
+        Category::create($data);
+        return back()->with('success', 'Categories has been created');
     }
 
    

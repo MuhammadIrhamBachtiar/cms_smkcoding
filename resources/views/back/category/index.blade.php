@@ -11,6 +11,17 @@
             {{-- Tombol Create --}}
             <button class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Create</button>
 
+            <div class="my-3">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
             {{-- Tabel Kategori --}}
             <table class="table table-striped table-bordered">
                 <thead>
