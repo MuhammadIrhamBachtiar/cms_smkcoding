@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Back\DashboardController;
+use App\Http\Controllers\Back\CategoryController; // Pastikan namespace benar
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
+
+Route::resource('/categories', CategoryController::class); // Tambahkan resource controller
