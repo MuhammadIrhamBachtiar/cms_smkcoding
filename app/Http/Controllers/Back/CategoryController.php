@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Category;  // Add this line to import the Category model
 class CategoryController extends Controller
 {
     /**
@@ -12,47 +12,32 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('back.category.index');
+        // Bagian ini tetap seperti yang Anda isi
+        return view('back.category.index', [
+            'categories' => Category::get()
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+
+    
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        // Kosong
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+   
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Kosong
     }
 
     /**
@@ -60,6 +45,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Kosong
     }
 }
