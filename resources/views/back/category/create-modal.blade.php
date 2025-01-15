@@ -1,5 +1,6 @@
 <!-- Modal -->
-<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalCreate" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-success text-white">
@@ -7,7 +8,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action=""{{url('catagories') }}" method="post">
+            <form action="{{url('catagories' }}" method="post">
                 @csrf
                 <div class="mb-3">
                     <label for="name">Name</label>
