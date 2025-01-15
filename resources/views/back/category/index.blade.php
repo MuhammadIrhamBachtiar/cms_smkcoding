@@ -50,8 +50,8 @@
                             <td>{{ $item->slug }}</td>
                             <td>{{ $item->created_at->format('d-m-Y H:i') }}</td>
                             <td>
-                                <div class="text-center">
-                                    <button class="btn btn-secondary">Edit</button>
+                                <div class="text-center d-flex justify-content-center">
+                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalUpdate{{ $item->id }}">Edit</button>
                                     <button class="btn btn-danger">Delete</button>
                                 </div>
                             </td>
@@ -68,5 +68,7 @@
         {{-- Modal Create --}}
         @include('back.category.create-modal')
 
+        {{-- Modal Update --}}
+        @include('back.category.update-modal')
     </main>
 @endsection
