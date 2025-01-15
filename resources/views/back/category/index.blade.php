@@ -22,6 +22,15 @@
                     </div>
                 @endif
             </div>
+
+            @if (session('success'))
+    <div class="my-3">
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    </div>
+@endif
+
             {{-- Tabel Kategori --}}
             <table class="table table-striped table-bordered">
                 <thead>

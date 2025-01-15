@@ -44,7 +44,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Kosong
+        $data = $request->validate([
+            'name' => 'required|min:3'
+        ]);
+        $data['slug'] = Str::slug($data['name']);
+        
+        Category::find($id)->update($data);
+        return back()->with('success', 'Categories has been created');
     }
 
     /**
