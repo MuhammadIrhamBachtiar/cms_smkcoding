@@ -15,8 +15,7 @@
 
         <div class="mt-3">
             {{-- Tombol Create --}}
-            <button class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Create</button>
-
+            <a href="{{ url('article/create') }}" class="btn btn-success mb-2">Create</a>
             <div class="my-3">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -30,12 +29,12 @@
             </div>
 
             @if (session('success'))
-        <div class="my-3">
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        </div>
-        @endif
+                <div class="my-3">
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                </div>
+            @endif
 
             {{-- Tabel Kategori --}}
             <table class="table table-striped table-bordered" id="dataTable">
@@ -44,41 +43,16 @@
                         <th>No</th>
                         <th>Title</th>
                         <th>Category</th>
-                        <th>View</th>
+                        <th>Views</th>
                         <th>Status</th>
-                        <th>Public Date</th>
-                        <th>Function</th>
+                        <th>Publish Date</th>
+                        {{-- <th>Function</th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($articles as $item)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->title }}</td>
-                        <td>{{ $item->category->name }}</td>
-                        <td>{{ $item->views }}</td>
-                        @if ($item->status == 0)
-    <td>
-        <span class="badge bg-danger">Private</span>
-    </td>
-@else
-    <td>
-        <span class="badge bg-success">Published</span>
-    </td>
-@endif
-                        <td>{{ $item->publish_date }}</td>
-                        <td class="text-center">
-                            <a href="" class="btn btn-secondary">Detail</a>
-                            <a href="" class="btn btn-primary">Edit</a>
-                            <a href="" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
-                    @endforeach
                 </tbody>
             </table>
         </div>
-
-
     </main>
 @endsection
 
@@ -89,7 +63,41 @@
 
 <script>
     $(document).ready(function() {
-        $('#dataTable').DataTable(); // Perbaiki di sini, ganti dataTabel menjadi dataTable
+        $('#dataTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ url()->current()}}', // Pastikan route ini benar
+            columns: [
+                {
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'title',
+                    name: 'title'
+                },
+                {
+                    data: 'category.name', // Pastikan field ini sesuai dengan data JSON Anda
+                    name: 'category.name'
+                },
+                {
+                    data: 'views',
+                    name: 'views'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'publish_date',
+                    name: 'publish_date'
+                }
+                // {
+//     data: 'button',
+//     name: 'button'
+// },
+            ]
+        });
     });
 </script>
 @endpush
