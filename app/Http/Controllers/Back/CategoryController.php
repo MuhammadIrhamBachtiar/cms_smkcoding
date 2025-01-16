@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $data = $request->validated([
             'name' => 'required|min:3'
         ]);
         $data['slug'] = Str::slug($data['name']);

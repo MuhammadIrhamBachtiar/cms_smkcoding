@@ -14,9 +14,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('catagories')}}">
+          <a class="nav-link" href="{{url('categories')}}">
             <span data-feather="shopping-cart" class="align-text-bottom"></span>
-            Catagories
+            Categories
           </a>
         </li>
         <li class="nav-item">
