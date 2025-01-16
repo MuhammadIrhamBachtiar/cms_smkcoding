@@ -52,7 +52,7 @@
                             <td>
                                 <div class="text-center d-flex justify-content-center">
                                     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalUpdate{{ $item->id }}">Edit</button>
-                                    <button class="btn btn-danger">Delete</button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $item->id }}">Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -70,5 +70,8 @@
 
         {{-- Modal Update --}}
         @include('back.category.update-modal')
+
+        {{-- Modal Delete --}}
+        @include('back.category.delete-modal')
     </main>
 @endsection
