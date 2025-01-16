@@ -25,7 +25,7 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::resource('article', ArticleController::class);
 
 Route::resource('/categories', CategoryController::class)->only([
-    'index', 'store', 'update'
+    'index', 'store', 'update' ,'destroy'
 ]);
 
 Route::resource('categories', CategoryController::class);

@@ -67,7 +67,7 @@
         $('#dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ url()->current() }}', 
+            ajax: '{{ url()->current() }}',
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'title', name: 'title' },
@@ -75,25 +75,7 @@
                 { data: 'views', name: 'views' },
                 { data: 'status', name: 'status' },
                 { data: 'publish_date', name: 'publish_date' },
-                { 
-                    data: null,
-                    orderable: false,
-                    searchable: false,
-                    render: function(data, type, row) {
-                        return `
-                            <div class="text-center">
-                                <a href="{{ route('article.show', '') }}/${row.id}" class="btn btn-secondary">Detail</a>
-                                <a href="{{ route('article.edit', '') }}/${row.id}" class="btn btn-primary">Edit</a>
-                                <form action="{{ route('article.destroy', '') }}/${row.id}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
-                            </div>
-                        `;
-                    },
-                    className: "text-center"
-                }
+                { data: 'button', name: 'button' },
             ]
         });
     });

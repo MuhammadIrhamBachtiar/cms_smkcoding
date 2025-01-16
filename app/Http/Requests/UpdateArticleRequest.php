@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
-class ArticleRequest extends FormRequest
+
+class UpdateArticleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -10,6 +13,7 @@ class ArticleRequest extends FormRequest
     {
         return true;
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -19,11 +23,12 @@ class ArticleRequest extends FormRequest
     {
         return [
             'category_id'  => 'required',
-'title'        => 'required',
-'desc'         => 'required',
-'img'          => 'reqiered|image|file|mimes:png,jpg,jpeg,webp|max:2048',
-'status'       => 'required',
-'publish_date' => 'required',
+            'title'        => 'required',
+            'desc'         => 'required',
+            'img'          => 'nullable|image|file|mimes:png,jpg,jpeg,webp|max:2048',
+            'status'       => 'required',
+            'publish_date' => 'required',
+                  
         ];
     }
 }

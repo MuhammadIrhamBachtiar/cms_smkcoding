@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
-use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Requests\ArticleRequest; // Pastikan ArticleRequest diimpor
-use Illuminate\Support\Str; // Tambahkan untuk fungsi Str::slug
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Storage; // Import the Storage facade
 
 class ArticleController extends Controller
 {
@@ -21,7 +23,7 @@ class ArticleController extends Controller
             $article = Article::with('Category')->latest()->get();
 
             return DataTables::of($article)
-                -> addIndexColumn()
+                ->addIndexColumn()
                 ->addColumn('category_id', function ($article) {
                     return $article->Category->name;
                 })
@@ -35,11 +37,11 @@ class ArticleController extends Controller
                 ->addColumn('button', function ($article) {
                     return '<div class="text-center">
                                 <a href="article/'.$article->id.'" class="btn btn-secondary">Detail</a>
-                                <a href="" class="btn btn-primary">Edit</a>
+                                <a href="article/'. $article->id. '/edit" class="btn btn-primary">Edit</a>
                                 <a href="" class="btn btn-danger">Delete</a>
                             </div>';
                 })
-                ->rawColumns(['category_id', 'status'])
+                ->rawColumns(['category_id', 'status', 'button'])
                 ->make();
         }
 
@@ -63,10 +65,10 @@ class ArticleController extends Controller
     {
         $data = $request->validated();
 
-        $file = $request->file('img'); // img
-        $fileName = uniqid() . '.' . $file->getClientOriginalExtension(); // jpg, jpeg
+        $file = $request->file('img');
+        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
-        $file->storeAs('public/back/', $fileName); // public/back/126783gh.jpg
+        $file->storeAs('public/back/', $fileName);
 
         $data['img'] = $fileName;
         $data['slug'] = Str::slug($data['title']);
@@ -83,7 +85,7 @@ class ArticleController extends Controller
     {
         return view('back.article.show', [
             'article' => Article::find($id)
-          ]);
+        ]);
     }
 
     /**
@@ -92,17 +94,36 @@ class ArticleController extends Controller
     public function edit(string $id)
     {
         return view('back.article.update', [
-            'article' => Article::find($id),
-            'categories' => Category::get()
+            'article'     => Article::find($id),
+            'categories'  => Category::get()
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateArticleRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/back/', $fileName);
+
+            // Delete old image only if it exists
+            Storage::delete('public/back/' . $request->oldImg); // Now uses the imported Storage facade
+
+            $data['img'] = $fileName;
+        } else {
+            // Keep the old image name if no new image is uploaded
+            $data['img'] = $request->oldImg;
+        }
+        $data['slug'] = Str::slug($data['title']);
+
+        Article::find($id)->update($data);
+
+        return redirect(url('article'))->with('success', 'Data article has been updated');
     }
 
     /**
@@ -110,6 +131,6 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // You can implement delete logic here if needed
     }
 }
