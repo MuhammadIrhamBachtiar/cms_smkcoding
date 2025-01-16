@@ -1,8 +1,7 @@
-<h1>Ok</h1>
 @extends('back.layout.template')
 
 @push('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 @endpush
 
 @section('content')
@@ -29,15 +28,15 @@
             </div>
 
             @if (session('success'))
-    <div class="my-3">
-        <div class="alert alert-success">
-            {{ session('success') }}
+        <div class="my-3">
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
         </div>
-    </div>
-@endif
+        @endif
 
             {{-- Tabel Kategori --}}
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="dataTable">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -53,7 +52,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->title }}</td>
-                        <td>{{ $item->category_id }}</td>
+                        <td>{{ $item->category->name }}</td>
                         <td>{{ $item->status }}</td>
                         <td>{{ $item->publish_date }}</td>
                         <td class="text-center">
@@ -67,7 +66,7 @@
             </table>
         </div>
 
-        
+
     </main>
 @endsection
 
@@ -78,7 +77,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#dataTabel').DataTable();
+        $('#dataTable').DataTable(); // Perbaiki di sini, ganti dataTabel menjadi dataTable
     });
 </script>
 @endpush
