@@ -38,7 +38,7 @@ class ArticleController extends Controller
                     return '<div class="text-center">
                                 <a href="article/'.$article->id.'" class="btn btn-secondary">Detail</a>
                                 <a href="article/'. $article->id. '/edit" class="btn btn-primary">Edit</a>
-                                <a href="" class="btn btn-danger">Delete</a>
+                                <a href="#" onclick="deleteArticle(this)" data-id="'.$article->id.'" class="btn btn-danger">Delete</a>
                             </div>';
                 })
                 ->rawColumns(['category_id', 'status', 'button'])
