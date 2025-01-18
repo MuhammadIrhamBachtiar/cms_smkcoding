@@ -55,22 +55,60 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 {{-- alert success --}}
 <script>
+    // Ambil data swal jika ada
     const swal = $('.swal').data('swal');
 
-    if(swal) {
-        swal.fire({
-            'title'; 'Success',
-            'text': swal,
-            'icon': 'success'
-            'showConfirmButton' : false,
-            'timer': 2000
-        })
+    if (swal) {
+        Swal.fire({
+            title: 'Success',
+            text: swal,
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000
+        });
     }
-    </script>
-     
+
+    // Fungsi untuk menghapus artikel
+    function deleteArticle(e) {
+        let id = e.getAttribute('data-id'); // Ambil ID dari atribut data-id
+        
+        Swal.fire({
+            title: 'Delete Article',
+            text: "Are You Sure?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Delete!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) { // Perhatikan penggunaan `isConfirmed`
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'DELETE',
+                    url: '/article/' + id,
+                    dataType: "json",
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Success',
+                            text: response.message,
+                            icon: 'success',
+                        }).then(() => {
+                            window.location.href = '/article';
+                        });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    }
+                });
+            }
+        });
+    }
+</script>
 
 <script>
     $(document).ready(function() {
@@ -88,6 +126,6 @@
                 { data: 'button', name: 'button' },
             ]
         });
-    });
+    })
 </script>
 @endpush

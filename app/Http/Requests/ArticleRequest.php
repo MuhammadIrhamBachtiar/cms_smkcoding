@@ -21,7 +21,7 @@ class ArticleRequest extends FormRequest
             'category_id'  => 'required',
 'title'        => 'required',
 'desc'         => 'required',
-'img'          => 'reqiered|image|file|mimes:png,jpg,jpeg,webp|max:2048',
+'img'          => 'nullable|image|file|mimes:png,jpg,jpeg,webp|max:2048',
 'status'       => 'required',
 'publish_date' => 'required',
         ];
