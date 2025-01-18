@@ -13,9 +13,9 @@
             <div class="card text-bg-primary mb-3" style="max-width: 100%;">
                 <div class="card-header">Total Article</div>
                 <div class="card-body">
-                    <h5 class="card-title">Primary card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and
-                        make up the bulk of the card's content.</p>
+                    <h5 class="card-title">{{ $total_articles }} Articles </h5>
+                    <p class="card-text"></p>
+                    <a href="{{ url('article') }}" class="text-white">View</a>
                 </div>
             </div>
         </div>
@@ -23,14 +23,38 @@
             <div class="card text-bg-secondary mb-3" style="max-width: 100%;">
                 <div class="card-header">Total Categories</div>
                 <div class="card-body">
-                    <h5 class="card-title">Secondary card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and
-                        make up the bulk of the card's content.</p>
+                    <h5 class="card-title">{{ $total_categories }} Categories</h5>
+                    <p class="card-text"></p>
+                    <a href="{{ url('article') }}" class="text-white">View</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="row">
+      <div class="col-6">
+          <table class="table table-bordered table-striped">
+              <thead>
+                  <tr>
+                      <th>No</th>
+                      <th>Title</th>
+                      <th>Category</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                @foreach ($latest_article as $item)
+    <tr>
+        <td>{{ $loop->iteration }}</td>
+        <td>{{ $item->title }}</td>
+        <td>{{ $item->Category->name }}</td>
+        <td></td>
+    </tr>
+@endforeach
+              </tbody>
+          </table>
+      </div>
+  </div>
 
       </div>
     </main>
