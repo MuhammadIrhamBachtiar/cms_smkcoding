@@ -7,19 +7,29 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-          </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar" class="align-text-bottom"></span>
-            This week
-          </button>
-        </div>
       </div>
-
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+      <div class="row">
+        <div class="col-6">
+            <div class="card text-bg-primary mb-3" style="max-width: 100%;">
+                <div class="card-header">Total Article</div>
+                <div class="card-body">
+                    <h5 class="card-title">Primary card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and
+                        make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card text-bg-secondary mb-3" style="max-width: 100%;">
+                <div class="card-header">Total Categories</div>
+                <div class="card-body">
+                    <h5 class="card-title">Secondary card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and
+                        make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
       </div>
