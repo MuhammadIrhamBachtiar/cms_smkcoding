@@ -79,7 +79,7 @@
                             <th>No</th>
                             <th>Title</th>
                             <th>Category</th>
-                            <th>Create At</th>
+                            <th>View</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -87,9 +87,9 @@
                         @forelse ($popular_article as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->title ?? 'Untitled' }}</td>
-                                <td>{{ $item->category->name ?? 'Uncategorized' }}</td>
-                                <td>{{ $item->created_at ? $item->created_at->format('d M Y, H:i') : '-' }}</td>
+                                <td>{{ $item->title }}</td>
+                                <td>{{ $item->category->name}}</td>
+                                <td>{{ $item->views  }}x</td>
                                 <td class="text-center">
                                     <a href="{{ url('article/' . $item->id) }}" class="btn btn-sm btn-secondary">Detail</a>
                                 </td>
