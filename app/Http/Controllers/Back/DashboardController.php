@@ -12,9 +12,11 @@ class DashboardController extends Controller
     public function index()
     {
         return view('back.dashboard.index', [
-            'total_articles' => Article::count(),
-            'total_categories' => Category::count(),
-            'latest_article' => Article::with('Category')->whereStatus(1)->take(10)->get()
+            'total_articles'    => Article::count(),
+            'total_categories'  => Category::count(),
+            'latest_article'    => Article::with('category')->whereStatus(1)->latest()->take(5)->get(),
+            'popular_article'   => Article::with('category')->whereStatus(1)->orderBy('views', 'desc')
+                                        ->take(5)->get(),
         ]);
     }
 }
