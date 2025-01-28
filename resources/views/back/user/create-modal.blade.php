@@ -11,11 +11,11 @@
                   @csrf
                   <div class="mb-3">
                       <label for="name" class="form-label">Name</label>
-                      <input 
-                          type="text" 
-                          name="name" 
-                          id="name" 
-                          class="form-control @error('name') is-invalid @enderror" 
+                      <input
+                          type="name"
+                          name="name"
+                          id="name"
+                          class="form-control @error('name') is-invalid @enderror"
                           value="{{ old('name') }}"
                       >
                       @error('name')
@@ -25,11 +25,11 @@
                       @enderror
                       <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input 
-                            type="email" 
-                            name="email" 
-                            id="email" 
-                            class="form-control @error('email') is-invalid @enderror" 
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            class="form-control @error('email') is-invalid @enderror"
                             value="{{ old('email') }}"
                         >
                         @error('email')
@@ -40,11 +40,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input 
-                            type="password" 
-                            name="password" 
-                            id="password" 
-                            class="form-control @error('password') is-invalid @enderror" 
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            class="form-control @error('password') is-invalid @enderror"
                             value="{{ old('password') }}"
                         >
                         @error('password')
@@ -55,19 +55,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="konfirmasi_password">Konfirmasi Password</label>
-                        <input type="konfirmasi_password" name="password_confirmation" 
-                               id="konfirmasi_password" class="form-control @error('konfirmasi_password') is-invalid @enderror" 
-                               value="{{ old('konfirmasi_password') }}">
-                        @error('konfirmasi_password')
-                          <div class="invalid-feedback">
-                            {{ $message }}
-                          </div>
-                        @enderror
-                      </div>
+<input type="password" name="password_confirmation" id="konfirmasi_password" class="form-control @error('konfirmasi_password') is-invalid @enderror" value="{{ old('konfirmasi_password') }}">
+
+@error('konfirmasi_password')
+    <div class="invalid-feedback">
+        {{ $message }}
+    </div>
+@enderror
+
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-success">Submit</button>
+                      <button type="submit" class="btn btn-success">Save</button>
                   </div>
               </form>
           </div>

@@ -50,7 +50,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->slug }}</td>
-                            <td>{{ $item->created_at->format('d-m-Y H:i') }}</td>
+                            <td>{{ $item->created_at}}</td>
                             <td>
                                 <div class="text-center d-flex justify-content-center">
                                     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalUpdate{{ $item->id }}">Edit</button>

@@ -13,30 +13,35 @@
             Articles
           </a>
         </li>
+        @if(auth()->user()->role == 1)
         <li class="nav-item">
-          <a class="nav-link" href="{{url('categories')}}">
-            <span data-feather="shopping-cart" class="align-text-bottom"></span>
-            Categories
-          </a>
+            <a class="nav-link" href="{{ url('categories') }}">
+                <span data-feather="shopping-cart" class="align-text-bottom"></span>
+                Categories
+            </a>
         </li>
+    @endif
         <li class="nav-item">
           <a class="nav-link" href="{{ url('users') }}">
             <span data-feather="users" class="align-text-bottom"></span>
             Users
           </a>
         </li>
-        
+
         <li class="nav-item">
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-          </form>
-          <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-            Logout
-          </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+
+            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+                Logout
+            </a>
+        </li>
         </li>
       </ul>
 
-      
+
     </div>
-</nav>    
+</nav>
