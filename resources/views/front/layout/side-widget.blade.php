@@ -4,11 +4,11 @@
 <section class="card mb-4 shadow-sm">
     <h4 class="card-header bg-light">Search</h4>
     <div class="card-body">
-        <form role="search">
+        <form action="{{ route('search') }}" method="POST">
+            @csrf
             <div class="input-group">
-                <input class="form-control" type="search" placeholder="Enter search term..."
-                    aria-label="Search">
-                <button class="btn btn-primary" type="submit">Go!</button>
+                <input class="form-control" type="text" name="keyword" placeholder="Search articles..." />
+                <button class="btn btn-primary" id="button-search" type="submit">Submit</button>
             </div>
         </form>
     </div>
@@ -22,7 +22,7 @@
             <div class="col-sm-6">
                 <div>
                     @foreach ($categories as $item)
-                    <span><a href="#" class="bg-primary badge text-white">{{ $item->name }}</a></span>
+                    <span><a href="#" class="bg-primary badge text-white unstyle-categories">{{ $item->name }}</a></span>
                 @endforeach
                 </div>
             </div>

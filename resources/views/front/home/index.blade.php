@@ -4,42 +4,35 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <div class="card mb-4">
-                    <a href="#!"><img class="card-img-top" src="{{ asset('storage/back/' . $latest_post->image) }}" alt="..." /></a>
+                <div class="card mb-4 shadow-sm">
+                    <a href="{{ url('p/'.$latest_post->slug)}}"><img class="card-img-top featured-img" src="{{ asset('storage/back/' . $latest_post->img) }}" alt="..." /></a>
                     <div class="card-body">
                         <div class="small text-muted">{{ $latest_post->created_at->format('d-m-Y') }}</div>
                         <h2 class="card-title">{{ $latest_post->title }}</h2>
                         <p class="card-text">{{ Str::limit(strip_tags($latest_post->desc), 200, '...') }}</p>
-                        <a class="btn btn-primary" href="#!">Read more →</a>
+                        <a class="btn btn-primary" href="{{ url('p/'.$latest_post->slug)}}">Read more →</a>
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($articles->take(3) as $item)
-                    <div class="col-lg-6">
-                        <div class="card mb-4">
-                            <a href="#"><img class="card-img-top" src="{{ asset('storage/back/'. $item->img) }}" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted">{{ $item->created_at->format('d-m-y') }}</div>
-                                <h2 class="card-title h4">{{ $item->title }}</h2>
-                                <p class="card-text">{{ Str::limit(strip_tags($item->desc), 200, '...') }}</p>
-                                <a class="btn btn-primary" href="#">Read more →</a>
+                    @foreach ($articles->take(2) as $item) <!-- Ubah take(3) menjadi take(2) -->
+                        <div class="col-lg-6">
+                            <div class="card mb-4 shadow-sm">
+                                <a href="{{ url('p/'.$item->slug)}}"><img class="card-img-top post-img" src="{{ asset('storage/back/'. $item->img) }}" alt="..." /></a>
+                                <div class="card-body card-height">
+                                    <div class="small text-muted">{{ $item->created_at->format('d-m-y') }}
+                                        <a href="{{ url('category/'.$item->Category->slug) }}">{{ $item->Category->name }}</a>
+                                    </div>
+                                    <h2 class="card-title h4">{{ $item->title }}</h2>
+                                    <p class="card-text">{{ Str::limit(strip_tags($item->desc), 200, '...') }}</p>
+                                    <a class="btn btn-primary" href="{{ url('p/'.$item->slug)}}">Read more →</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
-                <nav aria-label="Pagination">
-                    <hr class="my-0" />
-                    <ul class="pagination justify-content-center my-4">
-                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                    </ul>
-                </nav>
+                <div class="pagination justify-content-center my-4">
+                    {{ $articles->links() }}
+                </div>
             </div>
             <div class="col-lg-4">
                 @include('front.layout.side-widget')
