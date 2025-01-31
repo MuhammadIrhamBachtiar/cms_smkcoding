@@ -13,7 +13,7 @@
         </div>
 
         @if ($keyword)
-  <p>Showing articles with keyword : <b>{{ $keyword }}</b></p>
+  <p>Showing articles with category : <b>{{ $category }}</b></p>
   <a href="{{ url('articles') }}" class="btn btn-secondary btn-sm">Reset</a>
 @endif
 

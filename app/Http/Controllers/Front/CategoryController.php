@@ -9,11 +9,13 @@ use App\Models\Article;
 class CategoryController extends Controller
 {
     public function index($slugCategory)
-{
-    return view('front.category.index', [
-        'articles' => Article::whereHas('category', function($q) use ($slugCategory) {
-            $q->where('slug', $slugCategory);
-        })->latest()->paginate(9)
-    ]);
+    {
+        return view('front.category.index', [
+            'articles' => Article::with('category')->whereHas('category', function($q) use ($slugCategory) {
+                $q->where('slug', $slugCategory);
+            })->latest()->paginate(9),
+            'category' => $slugCategory
+        ]);
+    }
 }
-}
+
