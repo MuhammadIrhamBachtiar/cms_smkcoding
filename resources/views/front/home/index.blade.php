@@ -1,59 +1,32 @@
 @extends('front.layout.template')
 
 @section('content')
-    <class="container">
+    <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="card mb-4">
-                    <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                    <a href="#!"><img class="card-img-top" src="{{ asset('storage/back/' . $latest_post->image) }}" alt="..." /></a>
                     <div class="card-body">
-                        <div class="small text-muted">January 1, 2023</div>
-                        <h2 class="card-title">Featured Post Title</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                        <div class="small text-muted">{{ $latest_post->created_at->format('d-m-Y') }}</div>
+                        <h2 class="card-title">{{ $latest_post->title }}</h2>
+                        <p class="card-text">{{ Str::limit(strip_tags($latest_post->desc), 200, '...') }}</p>
                         <a class="btn btn-primary" href="#!">Read more →</a>
                     </div>
                 </div>
                 <div class="row">
+                    @foreach ($articles->take(3) as $item)
                     <div class="col-lg-6">
                         <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                            <a href="#"><img class="card-img-top" src="{{ asset('storage/back/'. $item->img) }}" alt="..." /></a>
                             <div class="card-body">
-                                <div class="small text-muted">January 1, 2023</div>
-                                <h2 class="card-title h4">Post Title</h2>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                <a class="btn btn-primary" href="#!">Read more →</a>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted">January 1, 2023</div>
-                                <h2 class="card-title h4">Post Title</h2>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                <a class="btn btn-primary" href="#!">Read more →</a>
+                                <div class="small text-muted">{{ $item->created_at->format('d-m-y') }}</div>
+                                <h2 class="card-title h4">{{ $item->title }}</h2>
+                                <p class="card-text">{{ Str::limit(strip_tags($item->desc), 200, '...') }}</p>
+                                <a class="btn btn-primary" href="#">Read more →</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted">January 1, 2023</div>
-                                <h2 class="card-title h4">Post Title</h2>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                <a class="btn btn-primary" href="#!">Read more →</a>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted">January 1, 2023</div>
-                                <h2 class="card-title h4">Post Title</h2>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>
-                                <a class="btn btn-primary" href="#!">Read more →</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <nav aria-label="Pagination">
                     <hr class="my-0" />
@@ -69,7 +42,8 @@
                 </nav>
             </div>
             <div class="col-lg-4">
-            @include('front.layout.side-widget')
+                @include('front.layout.side-widget')
             </div>
         </div>
+    </div>
 @endsection

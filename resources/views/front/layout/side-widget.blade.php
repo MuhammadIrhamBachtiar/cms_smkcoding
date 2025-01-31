@@ -20,18 +20,11 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-6">
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-2"><a class="text-decoration-none" href="#!">Web Design</a></li>
-                    <li class="mb-2"><a class="text-decoration-none" href="#!">HTML</a></li>
-                    <li class="mb-2"><a class="text-decoration-none" href="#!">Freebies</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-6">
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-2"><a class="text-decoration-none" href="#!">JavaScript</a></li>
-                    <li class="mb-2"><a class="text-decoration-none" href="#!">CSS</a></li>
-                    <li class="mb-2"><a class="text-decoration-none" href="#!">Tutorials</a></li>
-                </ul>
+                <div>
+                    @foreach ($categories as $item)
+                    <span><a href="#" class="bg-primary badge text-white">{{ $item->name }}</a></span>
+                @endforeach
+                </div>
             </div>
         </div>
     </div>
