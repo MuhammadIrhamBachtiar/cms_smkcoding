@@ -15,6 +15,8 @@
 <!-- Core theme CSS (includes Bootstrap) -->
 <link href="{{ asset('frontu/css/styles.css') }}" rel="stylesheet" />
 <link href="{{ asset('frontu/css/custom.css') }}" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 
 @stack('css')
 
@@ -64,9 +66,12 @@
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous">
         </script>
-
         <!-- Core theme JS -->
         <script src="{{ asset('frontu/js/scripts.js') }}"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+            </script>
         @stack('js')
     </body>
 </html>

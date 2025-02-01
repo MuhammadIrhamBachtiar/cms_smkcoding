@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 return [
     /*
     |--------------------------------------------------------------------------
-    | Nama Aplikasi
+    | Application Name
     |--------------------------------------------------------------------------
     */
 
@@ -14,7 +14,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Environment Aplikasi
+    | Application Environment
     |--------------------------------------------------------------------------
     */
 
@@ -22,7 +22,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Mode Debug Aplikasi
+    | Application Debug Mode
     |--------------------------------------------------------------------------
     */
 
@@ -30,7 +30,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | URL Aplikasi
+    | Application URL
     |--------------------------------------------------------------------------
     */
 
@@ -39,7 +39,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Timezone Aplikasi
+    | Application Timezone
     |--------------------------------------------------------------------------
     */
 
@@ -47,7 +47,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Konfigurasi Bahasa Aplikasi
+    | Application Locale Configuration
     |--------------------------------------------------------------------------
     */
 
@@ -57,7 +57,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Kunci Enkripsi
+    | Encryption Key
     |--------------------------------------------------------------------------
     */
 
@@ -66,7 +66,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Driver Mode Maintenance
+    | Maintenance Mode Driver
     |--------------------------------------------------------------------------
     */
 
@@ -77,29 +77,34 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Service Provider yang Dimuat Otomatis
+    | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
-        // Package Service Provider
+        /*
+         * Package Service Providers...
+         */
         Yajra\DataTables\DataTablesServiceProvider::class,
 
-        // Service Provider Aplikasi
+        /*
+         * Application Service Providers...
+         */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\SideWidgetProvider::class,
+
     ])->toArray(),
 
     /*
     |--------------------------------------------------------------------------
-    | Alias Class
+    | Class Aliases
     |--------------------------------------------------------------------------
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        
+        // Add custom aliases here if needed
     ])->toArray(),
-
 ];

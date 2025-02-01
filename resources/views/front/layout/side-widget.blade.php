@@ -1,5 +1,5 @@
  {{-- resources/views/front/layout/side-widget.blade.php --}}
-
+ <data-aos="fade-left">
 <!-- Search widget-->
 <section class="card mb-4 shadow-sm">
     <h4 class="card-header bg-light">Search</h4>
@@ -36,5 +36,11 @@
     <div class="card-body">
         <p class="mb-0">You can put anything you want inside of these side widgets. They are easy to use,
         and feature the Bootstrap 5 card component!</p>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header">Popular Posts</div>
+        <div class="card-body">
+        </div>
     </div>
 </section>

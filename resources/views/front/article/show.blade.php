@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <!-- Konten Utama (8 kolom) -->
-            <div class="col-lg-8 order-1 order-lg-0"> <!-- Urutan untuk mobile/desktop -->
+            <div class="col-lg-8" data-aos="fade-up"> <!-- Urutan untuk mobile/desktop -->
                 <div class="card mb-4 shadow-sm">
                     <a href="{{ url('p/'.$article->slug) }}">
                         <img class="card-img-top single-img" src="{{ asset('storage/back/'. $article->img) }}" alt="{{ $article->title }}">

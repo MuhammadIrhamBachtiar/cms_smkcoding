@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <div class="card mb-4 shadow-sm">
+                <div class="card mb-4 shadow-sm" data-aos="fade-in">
                     <a href="{{ url('p/'.$latest_post->slug)}}"><img class="card-img-top featured-img" src="{{ asset('storage/back/' . $latest_post->img) }}" alt="..." /></a>
                     <div class="card-body">
                         <div class="small text-muted">{{ $latest_post->created_at->format('d-m-Y') }}</div>
@@ -17,7 +17,7 @@
                 </div>
                 <div class="row">
                     @foreach ($articles->take(2) as $item) <!-- Ubah take(3) menjadi take(2) -->
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" data-aos="fade-up">
                             <div class="card mb-4 shadow-sm">
                                 <a href="{{ url('p/'.$item->slug)}}"><img class="card-img-top post-img" src="{{ asset('storage/back/'. $item->img) }}" alt="..." /></a>
                                 <div class="card-body card-height">

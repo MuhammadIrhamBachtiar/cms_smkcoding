@@ -22,7 +22,6 @@ class CategoryController extends Controller
                 $q->where('slug', $slugCategory);
             })->latest()->paginate(9),
             'category' => $category, // Kirim objek kategori, bukan string
-            'category_navbar' => Category::latest()->take(3)->get()
         ]);
     }
 }

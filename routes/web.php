@@ -6,6 +6,7 @@ use App\Http\Controllers\Back\DashboardController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ArticleController as FrontArticleController;
+use App\Http\Controllers\Front\ContactController; // Add this line
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Front\CategoryController as FrontCategoryController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Front\CategoryController as FrontCategoryController;
 // Front Routes
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [HomeController::class, 'about']);
+Route::get('/contact', [ContactController::class, 'index']);
 
 Route::get('/p/{slug}', [FrontArticleController::class, 'show']);
 Route::get('/articles', [FrontArticleController::class, 'index']);
