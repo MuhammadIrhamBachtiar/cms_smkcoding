@@ -22,8 +22,8 @@
             <div class="col-sm-6">
                 <div>
                     @foreach ($categories as $item)
-                    <span><a href="{{ url('category/'. $item->slug) }}" class="bg-primary badge text-white unstyle-categories">{{ $item->name }}</a></span>
-                @endforeach
+                    <span><a href="{{ url('category/'.$item->slug) }}" class="bg-primary badge text-white">{{ $item->name }}</a></span>
+                    @endforeach
                 </div>
             </div>
         </div>

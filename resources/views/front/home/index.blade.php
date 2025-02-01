@@ -1,5 +1,7 @@
 @extends('front.layout.template')
 
+@section('title', 'Laravel Blog - M.Irham')
+
 @section('content')
     <div class="container">
         <div class="row">

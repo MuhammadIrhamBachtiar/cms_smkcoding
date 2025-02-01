@@ -23,14 +23,14 @@ use App\Http\Controllers\Front\CategoryController as FrontCategoryController;
 
 // Front Routes
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [HomeController::class, 'about']);
+
 Route::get('/p/{slug}', [FrontArticleController::class, 'show']);
 Route::get('/articles', [FrontArticleController::class, 'index']);
 Route::post('/articles/search', [FrontArticleController::class, 'index'])->name('search');
 
-Route::get('category/{slug}', [CategoryController::class, 'index']);
+Route::get('category/{slug}', [FrontCategoryController::class, 'index']);
 // Authentication Routes
-Auth::routes();
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Protected Routes
 Route::middleware('auth')->group(function () {
@@ -50,3 +50,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

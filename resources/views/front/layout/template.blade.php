@@ -1,31 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
     <head>
+        <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Laravel Blog Platform" />
-        <meta name="author" content="" />
+        <meta name="author" content="M.Irham" />
         @stack('meta-seo')
-        <title>Laravel Blog</title>
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('frontu/css/styles.css') }}" rel="stylesheet" />
-        @stack('css')
-    </head>
-    <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}">Laravel Blog</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <title>@yield('title')</title>
 
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<link rel="icon" type="image/x-icon" href="{{ asset('frontu/img/favicon.ico') }}" />
+
+<!-- Core theme CSS (includes Bootstrap) -->
+<link href="{{ asset('frontu/css/styles.css') }}" rel="stylesheet" />
+<link href="{{ asset('frontu/css/custom.css') }}" rel="stylesheet" />
+
+@stack('css')
+
+</head>
+<body>
+
+<!-- Responsive navbar -->
+@include('front.layout.navbar')
+
+
 
         <!-- Page header -->
         <header class="py-5 bg-light border-bottom mb-4">

@@ -27,7 +27,8 @@ class ArticleController extends Controller
         }
     return view('front.article.index', [
         'articles' => $articles,
-        'keyword' => $keyword
+        'keyword' => $keyword,
+        'category_navbar' => Category::latest()->take(3)->get()
     ]);
 }
     public function show($slug)
@@ -36,8 +37,9 @@ class ArticleController extends Controller
         $article->increment('views');
 
         return view('front.article.show', [
-            'article' => Article::whereSlug($slug)->first(),
-            'categories' => Category::latest()->get()
+            'article' => $article,
+            'categories' => Category::latest()->get(),
+            'category_navbar' => Category::latest()->take(3)->get()
         ]);
     }
 }
