@@ -70,6 +70,7 @@ class ArticleController extends Controller
 
         $file->storeAs('public/back/', $fileName);
 
+        $data['user_id'] = auth()->user()->id;
         $data['img'] = $fileName;
         $data['slug'] = Str::slug($data['title']);
 
@@ -84,7 +85,7 @@ class ArticleController extends Controller
     public function show(string $id)
     {
         return view('back.article.show', [
-            'article' => Article::find($id)
+            'article' => Article::with('User', 'Category')->find($id)
         ]);
     }
 
@@ -119,6 +120,7 @@ class ArticleController extends Controller
             // Keep the old image name if no new image is uploaded
             $data['img'] = $request->oldImg;
         }
+        $data['user_id'] = auth()->user()->id;
         $data['slug'] = Str::slug($data['title']);
 
         Article::find($id)->update($data);
@@ -134,7 +136,7 @@ class ArticleController extends Controller
         $data = Article::find($id);
         Storage::delete('public/back/'. $data->img);
         $data->delete();
-        
+
         return response()->json([
           'message' => 'Data article has been deleted'
         ]);

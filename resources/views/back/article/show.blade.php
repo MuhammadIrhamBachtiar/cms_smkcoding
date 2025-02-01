@@ -54,6 +54,10 @@
                         <th>Publish Date</th>
                         <td>: {{ $article->publish_date ?? 'Not set' }}</td>
                     </tr>
+                    <tr>
+                        <th>Writer</th>
+                        <td>: {{ $article->User->name }}</td>
+                    </tr>
                 </table>
             @else
                 <div class="alert alert-warning">

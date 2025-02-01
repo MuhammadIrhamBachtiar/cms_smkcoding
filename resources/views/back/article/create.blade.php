@@ -10,7 +10,7 @@
             <h1 class="h2">Create Articles</h1>
         </div>
 
-        
+
             <div class="my-3">
                 <a href="{{url('article/create')}}" class=btn btn-success mb-2">Create</a>
                 @if ($errors->any())
@@ -24,7 +24,7 @@
                 @endif
                 <form action="{{ url('article') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                
+
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
@@ -32,7 +32,7 @@
                                 <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}">
                             </div>
                         </div>
-                
+
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="category_id">Category</label>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                
+
                     <div class="mb-3">
                         <label for="desc">Description</label>
                         <textarea name="desc" id="myeditor" cols="30" rows="10" class="form-control"></textarea>
@@ -57,7 +57,7 @@
                     <div class="mt-1">
                         <img src="" class="img-thumbnail img-preview" width="100px">
                       </div>
-                    
+
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
@@ -69,7 +69,7 @@
                                 </select>
                             </div>
                         </div>
-                    
+
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="publish_date">Publish Date</label>
@@ -77,13 +77,13 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="float-end">
                         <button type="submit" class="btn btn-success">Save</button>
                     </div>
                 </form>
 
-            
+
             {{-- Tabel Kategori --}}
         </div>
     </main>
@@ -103,10 +103,9 @@
     }
     </script>
 <script>
-    // Initialize CKEditor for the textarea
+
     CKEDITOR.replace('myeditor' , options);
 
-    // img preview
 $("#img").change(function() {
   previewImage(this);
 });

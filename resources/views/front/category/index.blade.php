@@ -25,7 +25,7 @@
                         </a>
                         <div class="card-body card-height">
                             <div class="small text-muted">
-                                {{ $item->created_at->format('d-m-Y') }} |
+                                {{ $item->created_at->format('d-m-Y') }} | {{ $item->User->name }} |
                                 <a href="{{ url('category/'.$item->Category->slug) }}">{{ $item->Category->name }}</a>
                             </div>
                             <h2 class="card-title h4">{{ $item->title }}</h2>

@@ -13,8 +13,8 @@ class HomeController extends Controller
     {
 
         return view('front.home.index', [
-            'latest_post' => Article::latest()->first(),
-            'articles' => Article::with('category')->whereStatus(1)->latest()->paginate(6),
+                 'latest_post' => Article::with(['User', 'Category'])->latest()->first(),
+'articles' => Article::with('User', 'Category')->whereStatus(1)->latest()->paginate(6),
                 ]);
     }
     public function about()

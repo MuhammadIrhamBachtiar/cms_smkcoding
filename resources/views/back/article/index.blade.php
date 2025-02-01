@@ -2,6 +2,23 @@
 
 @push('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+<style>
+    /* Tambahkan animasi custom */
+    @keyframes slideIn {
+        from {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .custom-swal {
+        animation: slideIn 0.5s ease-out;
+    }
+</style>
 @endpush
 
 @section('title', 'List Articles - Admin')
@@ -28,7 +45,7 @@
                     </div>
                 @endif
             </div>
-            <div slass="swal" data-swal="{{ session('success') }}"></div>
+            <div class="swal" data-swal="{{ session('success') }}"></div> {{-- Perbaiki typo 'slass' ke 'class' --}}
 
             {{-- Articles Table --}}
             <table class="table table-striped table-bordered" id="dataTable">
@@ -55,25 +72,27 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{{-- alert success --}}
-<script>
-    // Ambil data swal jika ada
-    const swal = $('.swal').data('swal');
 
+<script>
+    // Notifikasi Sukses dengan Animasi
+    const swal = $('.swal').data('swal');
     if (swal) {
         Swal.fire({
             title: 'Success',
             text: swal,
             icon: 'success',
             showConfirmButton: false,
-            timer: 2000
+            timer: 2000,
+            customClass: { // Tambahkan custom class untuk animasi
+                popup: 'custom-swal'
+            }
         });
     }
 
-    // Fungsi untuk menghapus artikel
+    // Fungsi Delete (Tetap sama)
     function deleteArticle(e) {
-        let id = e.getAttribute('data-id'); // Ambil ID dari atribut data-id
-        
+        let id = e.getAttribute('data-id');
+
         Swal.fire({
             title: 'Delete Article',
             text: "Are You Sure?",
@@ -84,7 +103,7 @@
             confirmButtonText: 'Delete!',
             cancelButtonText: 'Cancel'
         }).then((result) => {
-            if (result.isConfirmed) { // Perhatikan penggunaan `isConfirmed`
+            if (result.isConfirmed) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -111,6 +130,7 @@
 </script>
 
 <script>
+    // DataTable (Tetap sama)
     $(document).ready(function() {
         $('#dataTable').DataTable({
             processing: true,
