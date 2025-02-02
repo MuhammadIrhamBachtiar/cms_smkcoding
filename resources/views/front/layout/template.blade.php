@@ -21,6 +21,8 @@
 
 </head>
 <body>
+    <div class="min-vh-100 d-flex flex-column justify-content-between">
+
 
 <!-- Responsive navbar -->
 @include('front.layout.navbar')
@@ -31,18 +33,36 @@
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-                    <p class="lead mb-0">A Professional Blog Platform Built with Bootstrap 5</p>
+                    <h1 class="fw-bolder">{{ $config ['title']}}</h1>
+                    <p class="lead mb-0">{{ $config ['caption'] }}</p>
                 </div>
             </div>
         </header>
 
-        <!-- Main content -->
-        <div class="container">
+        <div class="mb-4 container">
             <div class="row">
-                <!-- Main Content Column -->
-                <div class="col-lg-12"> <!-- Diubah menjadi full width -->
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <a href="https://domainesia.com" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ $config['ads_header'] }}" alt="ads header" class="img-fluid" width="100%">
+                    </a>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
                     @yield('content')
+
+                    <div class="mb-4 container">
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-6">
+                                <a href="https://domainesia.com" target="_blank" rel="noopener noreferrer">
+                                    <img src="{{ $config['ads_footer'] }}" alt="ads header" class="img-fluid" width="100%">
+                                </a>
+                            </div>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,7 +71,7 @@
         <footer class="py-5 bg-dark mt-4">
             <div class="container">
                 <p class="m-0 text-center text-white">
-                    Copyright &copy; Your Website {{ date('Y') }}
+                    Copyright &copy; {{ $config['footer'] }}{{ date('Y') }}
                 </p>
             </div>
         </footer>

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Article;
+use App\Models\Config; // Impor model Config
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Builder;
@@ -30,8 +31,10 @@ class SideWidgetProvider extends ServiceProvider
         });
         View::composer('front.layout.side-widget', function ($view) {
             $posts = Article::orderBy('views', 'desc')->take(3)->get();
+            $config = Config::where('name', 'ads_widget')->pluck('value', 'name');
 
             $view->with('popular_posts', $posts);
+            $view->with('config', $config);
         });
         View::composer('front.layout.navbar', function ($view) {
             $category = Category::latest()->take(3)->get();

@@ -22,8 +22,8 @@
                             similique alias beatae illo, ex ducimus a nihil incidunt! Facere.
                         </p>
                         <ul>
-                            <li>Phone:  +6282120191504</li>
-                            <li>Email:  irhammuhamad124@gmail.com</li>
+                            <li>Phone : {{ $config['phone'] }}</li>
+                            <li>Email : {{ $config['email'] }}</li>
                         </ul>
                     </div>
                 </div>
