@@ -21,6 +21,13 @@
             </a>
         </li>
     @endif
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('config') }}">
+          <span data-feather="list" class="align-text-bottom"></span>
+          Config
+        </a>
+      </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url('users') }}">
             <span data-feather="users" class="align-text-bottom"></span>

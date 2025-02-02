@@ -3,6 +3,7 @@
 use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Back\CategoryController;
 use App\Http\Controllers\Back\DashboardController;
+use App\Http\Controllers\Back\ConfigController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ArticleController as FrontArticleController;
@@ -32,6 +33,7 @@ Route::get('/articles', [FrontArticleController::class, 'index']);
 Route::post('/articles/search', [FrontArticleController::class, 'index'])->name('search');
 
 Route::get('category/{slug}', [FrontCategoryController::class, 'index']);
+Route::get('all-category', [FrontCategoryController::class, 'allCategory']);
 // Authentication Routes
 
 // Protected Routes
@@ -45,6 +47,9 @@ Route::middleware('auth')->group(function () {
     ])->middleware('UserAccess:1');
 
     Route::resource('/users', UserController::class);
+    Route::resource('/config', ConfigController::class)->only([
+        'index', 'update'
+    ]);
 
     Route::group(['prefix' => 'laravel-filemanager'], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();

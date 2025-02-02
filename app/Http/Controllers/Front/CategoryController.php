@@ -6,7 +6,7 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Database\Eloquent\Builder; 
 class CategoryController extends Controller
 {
     public function index($slugCategory)
@@ -24,4 +24,14 @@ class CategoryController extends Controller
             'category' => $category, // Kirim objek kategori, bukan string
         ]);
     }
+    public function allCategory()
+{
+    $category = Category::withCount(['Articles' => function (Builder $query) {
+        $query->where('status', 1);
+
+}])->latest()->get();
+    return view('front.category.all-category',[
+        'category' => $category
+    ]);
+}
 }
