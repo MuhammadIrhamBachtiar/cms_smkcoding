@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-6">
-                    <a href="https://domainesia.com" target="_blank" rel="noopener noreferrer">
+                    <a href="" target="_blank" rel="noopener noreferrer">
                         <img src="{{ $config['ads_header'] }}" alt="ads header" class="img-fluid" width="100%">
                     </a>
                 </div>
@@ -56,7 +56,7 @@
                         <div class="row">
                             <div class="col-3"></div>
                             <div class="col-6">
-                                <a href="https://domainesia.com" target="_blank" rel="noopener noreferrer">
+                                <a href="" target="_blank" rel="noopener noreferrer">
                                     <img src="{{ $config['ads_footer'] }}" alt="ads header" class="img-fluid" width="100%">
                                 </a>
                             </div>

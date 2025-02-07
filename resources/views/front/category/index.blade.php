@@ -7,9 +7,18 @@
         <div class="mb-3">
             <form action="{{ route('search') }}" method="POST">
                 @csrf
-                <div class="input-group">
-                    <input class="form-control" type="text" name="keyword" placeholder="Search articles..." />
-                    <button class="btn btn-primary" id="button-search" type="submit">Submit</button>
+                <div class="input-group shadow-lg rounded-pill">
+                    <input type="text"
+                        name="keyword"
+                        class="form-control rounded-pill border-0 ps-4"
+                        placeholder="Search articles..."
+                        value="{{ $keyword ?? '' }}"
+                        style="height: 50px;">
+                    <button type="submit"
+                        class="btn btn-primary rounded-pill px-4"
+                        style="height: 50px; margin-left: -35px;">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </form>
         </div>
