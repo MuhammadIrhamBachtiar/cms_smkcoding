@@ -10,6 +10,7 @@
         @stack('meta-seo')
         <title>@yield('title')</title>
 
+
 <link rel="icon" type="image/x-icon" href="{{ asset('frontu/img/favicon.ico') }}" />
 
 <!-- Core theme CSS (includes Bootstrap) -->
@@ -22,6 +23,7 @@
 </head>
 <body>
     <div class="min-vh-100 d-flex flex-column justify-content-between">
+        
 
 
 <!-- Responsive navbar -->
@@ -44,7 +46,6 @@
                 <div class="col-3"></div>
                 <div class="col-6">
                     <a href="" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ $config['ads_header'] }}" alt="ads header" class="img-fluid" width="100%">
                     </a>
                 </div>
                 <div class="col-3"></div>
@@ -57,7 +58,6 @@
                             <div class="col-3"></div>
                             <div class="col-6">
                                 <a href="" target="_blank" rel="noopener noreferrer">
-                                    <img src="{{ $config['ads_footer'] }}" alt="ads header" class="img-fluid" width="100%">
                                 </a>
                             </div>
                             <div class="col-3"></div>

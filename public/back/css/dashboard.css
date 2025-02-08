@@ -1,92 +1,633 @@
-body {
-  font-size: .875rem;
-}
-
-.feather {
-  width: 16px;
-  height: 16px;
-}
-
-/*
- * Sidebar
- */
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  /* rtl:raw:
-  right: 0;
-  */
-  bottom: 0;
-  /* rtl:remove */
-  left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-}
-
-@media (max-width: 767.98px) {
-  .sidebar {
-    top: 5rem;
+/* From Uiverse.io by bociKond */
+.spinner {
+    width: 70.4px;
+    height: 70.4px;
+    --clr: rgb(247, 197, 159);
+    --clr-alpha: rgb(247, 197, 159,.1);
+    animation: spinner 1.6s infinite ease;
+    transform-style: preserve-3d;
   }
-}
 
-.sidebar-sticky {
-  height: calc(100vh - 48px);
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
+  .spinner > div {
+    background-color: var(--clr-alpha);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    border: 3.5px solid var(--clr);
+  }
 
-.sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
-}
+  .spinner div:nth-of-type(1) {
+    transform: translateZ(-35.2px) rotateY(180deg);
+  }
 
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #727272;
-}
+  .spinner div:nth-of-type(2) {
+    transform: rotateY(-270deg) translateX(50%);
+    transform-origin: top right;
+  }
 
-.sidebar .nav-link.active {
-  color: #2470dc;
-}
+  .spinner div:nth-of-type(3) {
+    transform: rotateY(270deg) translateX(-50%);
+    transform-origin: center left;
+  }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
-}
+  .spinner div:nth-of-type(4) {
+    transform: rotateX(90deg) translateY(-50%);
+    transform-origin: top center;
+  }
 
-.sidebar-heading {
-  font-size: .75rem;
-}
+  .spinner div:nth-of-type(5) {
+    transform: rotateX(-90deg) translateY(50%);
+    transform-origin: bottom center;
+  }
 
-/*
- * Navbar
- */
+  .spinner div:nth-of-type(6) {
+    transform: translateZ(35.2px);
+  }
 
-.navbar-brand {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  background-color: rgba(0, 0, 0, .25);
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-}
+  @keyframes spinner {
+    0% {
+      transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+    }
 
-.navbar .navbar-toggler {
-  top: .25rem;
-  right: 1rem;
-}
+    50% {
+      transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+    }
 
-.navbar .form-control {
-  padding: .75rem 1rem;
-}
+    100% {
+      transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+    }
+  } /* --- Global Styles --- */
+  body {
+      font-size: .875rem;
+      transition: background-color 0.3s ease;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  }
 
-.form-control-dark {
-  color: #fff;
-  background-color: rgba(255, 255, 255, .1);
-  border-color: rgba(255, 255, 255, .1);
-}
+  /* --- Ikon (feather) dengan efek transisi dan 3D --- */
+  .feather {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+  }
 
-.form-control-dark:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-}
+  .feather:hover {
+      transform: scale(1.1) rotate(15deg);
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  }
+
+  /* --- Tambahan: Efek 3D untuk Gambar Dashboard --- */
+  .dashboard-image {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .dashboard-image:hover {
+      transform: perspective(1200px) scale(1.05) rotateX(5deg);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  /* --- Sidebar --- */
+  .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100; /* Di belakang navbar */
+      padding: 48px 0 0; /* Sesuaikan dengan tinggi navbar */
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+      background: linear-gradient(135deg, #1e3c72, #2a5298);  /* Background gradasi */
+      animation: slideInFromLeft 0.5s ease-out;
+  }
+
+  @media (max-width: 767.98px) {
+      .sidebar {
+          top: 5rem;
+      }
+  }
+
+  .sidebar-sticky {
+      height: calc(100vh - 48px);
+      overflow-x: hidden;
+      overflow-y: auto; /* Isi scroll jika konten melebihi tinggi viewport */
+  }
+
+  /* Keyframes untuk animasi slide in */
+  @keyframes slideInFromLeft {
+      from {
+          transform: translateX(-100%);
+          opacity: 0;
+      }
+      to {
+          transform: translateX(0);
+          opacity: 1;
+      }
+  }
+
+  .sidebar .nav-link {
+      font-weight: 500;
+      color: #fff;
+      transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .sidebar .nav-link .feather {
+      margin-right: 4px;
+      color: #c0c0c0;
+  }
+
+  .sidebar .nav-link.active {
+      color: #ffcc00;
+  }
+
+  .sidebar .nav-link:hover .feather,
+  .sidebar .nav-link.active .feather {
+      color: inherit;
+  }
+
+  /* Efek gerak saat hover pada nav-link */
+  .sidebar .nav-link:hover,
+  .sidebar .nav-link:focus {
+      transform: translateX(5px);
+  }
+
+  /* Heading pada sidebar */
+  .sidebar-heading {
+      font-size: .75rem;
+      transition: transform 0.3s ease;
+  }
+
+  /* --- Navbar --- */
+  .navbar-brand {
+      padding: .75rem 1rem;
+      background-color: rgba(0, 0, 0, .25);
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .navbar-brand:hover,
+  .navbar-brand:focus {
+      transform: scale(1.05);
+  }
+
+  .navbar .navbar-toggler {
+      top: .25rem;
+      right: 1rem;
+      transition: transform 0.3s ease;
+  }
+
+  .navbar .navbar-toggler:hover,
+  .navbar .navbar-toggler:focus {
+      transform: rotate(90deg);
+  }
+
+  .navbar .form-control {
+      padding: .75rem 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-control-dark {
+      color: #fff;
+      background-color: rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .1);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-control-dark:focus {
+      border-color: transparent;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+  }
+
+  /* --- Efek 3D Global --- */
+  /* Menambahkan perspektif ke elemen-elemen untuk mendukung efek 3D */
+  .sidebar,
+  .navbar-brand,
+  .navbar .navbar-toggler,
+  .sidebar .nav-link,
+  .btn {
+      perspective: 1200px;
+  }
+
+  .sidebar:hover {
+      transform: perspective(1200px) rotateY(5deg);
+      transition: transform 0.5s ease;
+  }
+
+  .navbar-brand:hover {
+      transform: perspective(1200px) scale(1.05) rotateX(5deg);
+      transition: transform 0.5s ease;
+  }
+
+  .navbar .navbar-toggler:hover {
+      transform: perspective(1200px) rotate(90deg) rotateY(5deg);
+      transition: transform 0.5s ease;
+  }
+
+  .sidebar .nav-link:hover {
+      transform: perspective(1200px) translateX(10px);
+      transition: transform 0.3s ease;
+  }
+
+  .btn:hover {
+      transform: perspective(1200px) translateY(-5px) scale(1.05);
+      transition: transform 0.3s ease;
+  }
+
+  /* --- Dashboard Khusus --- */
+  /* Contoh efek 3D pada ikon dashboard */
+  .dashboard-icon {
+      font-size: 40px;
+      color: #ffcc00;
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .dashboard-icon:hover {
+      transform: perspective(1200px) scale(1.1) rotateY(15deg);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Contoh kartu (card) dashboard yang diberi efek hover */
+  .dashboard-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      position: relative;
+      padding: 1rem;
+      margin-bottom: 1rem;
+  }
+
+  .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  /* --- Smooth Scrolling --- */
+  html {
+      scroll-behavior: smooth;
+  }
+
+  /* --- Custom Scrollbar untuk .sidebar-sticky --- */
+  .sidebar-sticky::-webkit-scrollbar {
+      width: 8px;
+  }
+
+  .sidebar-sticky::-webkit-scrollbar-track {
+      background: #f1f1f1;
+  }
+
+  .sidebar-sticky::-webkit-scrollbar-thumb {
+      background-color: #c1c1c1;
+      border-radius: 4px;
+      border: 2px solid #f1f1f1;
+  }
+
+  /* --- Tombol dengan Efek Glitch --- */
+  button,
+  button::after {
+      padding: 16px 20px;
+      font-size: 18px;
+      background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+      border: 0;
+      color: #fff;
+      letter-spacing: 3px;
+      line-height: 1;
+      box-shadow: 6px 0px 0px #00e6f6;
+      outline: transparent;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+  }
+
+  button::after {
+      --slice-0: inset(50% 50% 50% 50%);
+      --slice-1: inset(80% -6px 0 0);
+      --slice-2: inset(50% -6px 30% 0);
+      --slice-3: inset(10% -6px 85% 0);
+      --slice-4: inset(40% -6px 43% 0);
+      --slice-5: inset(80% -6px 5% 0);
+      content: "HOVER ME";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, #ff013c 5%);
+      text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
+      clip-path: var(--slice-0);
+  }
+
+  button:hover::after {
+      animation: 1s glitch;
+      animation-timing-function: steps(2, end);
+  }
+
+  @keyframes glitch {
+      0% {
+          clip-path: var(--slice-1);
+          transform: translate(-20px, -10px);
+      }
+      10% {
+          clip-path: var(--slice-3);
+          transform: translate(10px, 10px);
+      }
+      20% {
+          clip-path: var(--slice-1);
+          transform: translate(-10px, 10px);
+      }
+      30% {
+          clip-path: var(--slice-3);
+          transform: translate(0px, 5px);
+      }
+      40% {
+          clip-path: var(--slice-2);
+          transform: translate(-5px, 0px);
+      }
+      50% {
+          clip-path: var(--slice-3);
+          transform: translate(5px, 0px);
+      }
+      60% {
+          clip-path: var(--slice-4);
+          transform: translate(5px, 10px);
+      }
+      70% {
+          clip-path: var(--slice-2);
+          transform: translate(-10px, 10px);
+      }
+      80% {
+          clip-path: var(--slice-5);
+          transform: translate(20px, -10px);
+      }
+      90% {
+          clip-path: var(--slice-1);
+          transform: translate(-10px, 0px);
+      }
+      100% {
+          clip-path: var(--slice-1);
+          transform: translate(0);
+      }
+  }
+
+  /* --- Tambahan Efek Hover pada Tombol --- */
+  .btn-hover-effect {
+      background: linear-gradient(45deg, #ff6f61, #ffcc00);
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 25px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-hover-effect:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(45deg, #ffcc00, #ff6f61);
+  }
+
+  /* --- Efek Hover pada Gambar --- */
+  .image-hover-effect {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 10px;
+      overflow: hidden;
+  }
+
+  .image-hover-effect:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  /* --- Animasi Loading Spinner --- */
+  @keyframes spin {
+      0% {
+          transform: rotate(0deg);
+      }
+      100% {
+          transform: rotate(360deg);
+      }
+  }
+
+  .loading-spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+  }
+
+  /* --- Efek Hover pada Card --- */
+  .card-hover-effect {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 10px;
+      overflow: hidden;
+  }
+
+  .card-hover-effect:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  /* --- Animasi Fade In --- */
+  @keyframes fadeIn {
+      from {
+          opacity: 0;
+      }
+      to {
+          opacity: 1;
+      }
+  }
+
+  .fade-in {
+      animation: fadeIn 1s ease-in;
+  }
+
+  /* --- Efek Hover pada Link --- */
+  .link-hover-effect {
+      color: #3498db;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .link-hover-effect:hover {
+      color: #ff6f61;
+      transform: translateX(5px);
+  }
+
+  /* --- Animasi Bounce --- */
+  @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+      }
+      40% {
+          transform: translateY(-30px);
+      }
+      60% {
+          transform: translateY(-15px);
+      }
+  }
+
+  .bounce {
+      animation: bounce 2s infinite;
+  }
+
+  /* --- Efek Hover pada Icon --- */
+  .icon-hover-effect {
+      transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .icon-hover-effect:hover {
+      transform: scale(1.2);
+      color: #ff6f61;
+  }
+
+  /* --- Animasi Slide In dari Kanan --- */
+  @keyframes slideInFromRight {
+      from {
+          transform: translateX(100%);
+          opacity: 0;
+      }
+      to {
+          transform: translateX(0);
+          opacity: 1;
+      }
+  }
+
+  .slide-in-right {
+      animation: slideInFromRight 0.5s ease-out;
+  }
+
+  /* --- Efek Hover pada Button dengan Gradient --- */
+  .gradient-button {
+      background: linear-gradient(45deg, #ff6f61, #ffcc00);
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 25px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .gradient-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(45deg, #ffcc00, #ff6f61);
+  }
+
+  /* --- Animasi Rotate --- */
+  @keyframes rotate {
+      from {
+          transform: rotate(0deg);
+      }
+      to {
+          transform: rotate(360deg);
+      }
+  }
+
+  .rotate {
+      animation: rotate 2s linear infinite;
+  }
+
+  /* --- Efek Hover pada Image dengan Overlay --- */
+  .image-overlay-effect {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+  }
+
+  .image-overlay-effect img {
+      transition: transform 0.3s ease;
+  }
+
+  .image-overlay-effect:hover img {
+      transform: scale(1.1);
+  }
+
+  .image-overlay-effect::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+  }
+
+  .image-overlay-effect:hover::after {
+      opacity: 1;
+  }
+
+  /* --- Animasi Pulse --- */
+  @keyframes pulse {
+      0% {
+          transform: scale(1);
+      }
+      50% {
+          transform: scale(1.1);
+      }
+      100% {
+          transform: scale(1);
+      }
+  }
+
+  .pulse {
+      animation: pulse 2s infinite;
+  }
+
+  /* --- Efek Hover pada Card dengan Shadow --- */
+  .card-shadow-effect {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 10px;
+      overflow: hidden;
+  }
+
+  .card-shadow-effect:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  /* --- Animasi Slide In dari Bawah --- */
+  @keyframes slideInFromBottom {
+      from {
+          transform: translateY(100%);
+          opacity: 0;
+      }
+      to {
+          transform: translateY(0);
+          opacity: 1;
+      }
+  }
+
+  .slide-in-bottom {
+      animation: slideInFromBottom 0.5s ease-out;
+  }
+
+  /* --- Efek Hover pada Button dengan Border --- */
+  .border-button {
+      background: transparent;
+      border: 2px solid #3498db;
+      color: #3498db;
+      padding: 15px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 25px;
+  }
+
+  .border-button:hover {
+      background: #3498db;
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }

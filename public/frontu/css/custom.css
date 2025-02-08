@@ -3,12 +3,24 @@
     height: 350px;
     object-fit: cover;
     border-radius: calc(0.24rem - 1px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .single-img {
     width: 100%;
     object-fit: cover;
     border-radius: calc(0.24rem - 1px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.single-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .post-img {
@@ -16,13 +28,30 @@
     height: 350px;
     object-fit: cover;
     border-radius: calc(0.24rem - 1px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card-height {
     height: 280px;
     position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-height:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .unstyle-categories {
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.unstyle-categories:hover {
+    color: #007bff; /* You can change this to match your website's color scheme */
 }
