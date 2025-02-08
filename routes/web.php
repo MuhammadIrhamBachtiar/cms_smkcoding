@@ -7,7 +7,7 @@ use App\Http\Controllers\Back\ConfigController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ArticleController as FrontArticleController;
-use App\Http\Controllers\Front\ContactController; // Add this line
+use App\Http\Controllers\Front\ContactController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Front\CategoryController as FrontCategoryController;

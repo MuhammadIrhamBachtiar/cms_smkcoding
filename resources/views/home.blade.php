@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <a class="btn btn-primary" href="{{ url('dashboard/') }}">Masuk</a>
                     {{ __('You are logged in!') }}
                 </div>
             </div>
